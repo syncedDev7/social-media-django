@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Birdys
+{% endblock  %}
+
+{% block content %}
+    <h1 class= "d-flex justify-content-center text-white mt-4">welcome to SocioTweet</h1>
+
+    <form method="post" >
+        {% csrf_token %}
+        <button class="btn btn-danger">Delete</button>
+        <a class="btn btn-sucess text-white" href="{% url 'tweet_list'%}">Cancel</a>
+    </form>
+
+{% endblock content %}
