@@ -10,12 +10,20 @@
 <div class="container row gap-3 ">
     {% for tweet in tweets  %}
     <div class="card bg-black text-white" style="width: 18rem;">
+        {% if tweet.photo %} 
         <img src="{{tweet.photo.url}}" class="card-img-top mt-3" alt="...">
+        {% else %}
+        <img src="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg" class="card-img-top mt-3" alt="No Image">
+        {% endif %}
+      
         <div class="card-body ">
           <h5 class="card-title">{{tweet.user.username}}</h5>
           <p class="card-text">{{tweet.text}}</p>
+        {% comment %} doing conditional rendering of edit and delete to only logged in user of that account {% endcomment %}
+        {% if tweet.user == user %}
           <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
           <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+        {% endif %}
         </div>
       </div>
     {% endfor %}
